@@ -6,13 +6,20 @@ const path = require("path");
 const app = express();
 
 const allowedOrigins = [
-  "http://localhost:3000", // local dev
-  "https://summary-generator-5avd.vercel.app" // your Vercel frontend
+  "http://localhost:3000", // Local development
+  "https://summary-generator-5avd.vercel.app" // Vercel deployed frontend
 ];
 
 app.use(
   cors({
-    origin: allowedOrigins,
+    origin: function (origin, callback) {
+      // Allow requests with no origin (like Postman or curl)
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   })
 );
@@ -46,7 +53,6 @@ app.post("/summarize", (req, res) => {
   python.stdin.end();
 });
 
-// ✅ Use dynamic port for Render (or default to 5000 locally)
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
