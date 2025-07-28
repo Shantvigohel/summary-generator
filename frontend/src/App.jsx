@@ -35,8 +35,15 @@ function App() {
     }
 
     setLoading(true);
+
+    // 🔁 Auto-switching URL logic
+    const isLocalhost = window.location.hostname === "localhost";
+    const BACKEND_URL = isLocalhost
+      ? "http://localhost:5000/summarize"
+      : "https://your-render-backend.onrender.com/summarize";
+
     try {
-      const response = await fetch("http://localhost:5000/summarize", {
+      const response = await fetch(BACKEND_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text }),
@@ -46,11 +53,11 @@ function App() {
       if (data.summary) {
         setSummary(data.summary);
       } else {
-        setError("Error generating summary"); // summary stays unchanged
+        setError("Error generating summary");
       }
     } catch (err) {
       console.error("Fetch error:", err);
-      setError("Error connecting to backend"); // summary stays unchanged
+      setError("Error connecting to backend");
     } finally {
       setLoading(false);
     }
@@ -62,19 +69,19 @@ function App() {
   };
 
   const handleCopy = () => {
-  if (summary) {
-    navigator.clipboard.writeText(summary);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1000); 
-  }
-};
+    if (summary) {
+      navigator.clipboard.writeText(summary);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1000);
+    }
+  };
 
 
   return (<>
     <div className="app">
       {/* Header */}
       <div className="header">
-      <FontAwesomeIcon icon={faWandMagicSparkles} style={{ marginRight: "12px", fontSize : "1.2rem" }}/>
+        <FontAwesomeIcon icon={faWandMagicSparkles} style={{ marginRight: "12px", fontSize: "1.2rem" }} />
         <span style={{ fontSize: "1.8rem", fontFamily: "Georgia, serif", color: "#fff" }}>
           Summary Generator
         </span>
@@ -159,7 +166,7 @@ function App() {
           </div>
         </div>
       </div>
-          
+
       <div className="footer">
         <div className="footer-left">
           <span className="footer-link" onClick={() => setShowAbout(true)}>About This Project</span>
@@ -194,7 +201,7 @@ function App() {
             </button>
             <h2>About This Project</h2>
             <p>
-              This is an AI-powered summarization tool built using a fine-tuned T5 transformer model. 
+              This is an AI-powered summarization tool built using a fine-tuned T5 transformer model.
               Users can input long-form text and generate concise summaries with one click.
             </p>
             <p>
@@ -210,7 +217,7 @@ function App() {
 
       {error && <Error message={error} onClose={() => setError(null)} />}
     </div>
-    </>
+  </>
   );
 }
 
