@@ -1,0 +1,90 @@
+:root {
+  /* === Colors === */
+  --bg-gradient-start: #222638;
+  --bg-gradient-end: #2b2e4d;
+
+  --text-color: #ffffff;
+  --text-muted: #b3b3b3;
+  --text-placeholder: #888;
+  --text-placeholder-strong: #ccc;
+
+  --header-bg: #1a1c2e;
+  --header-border: #2a2c3a;
+
+  --panel-bg: #161829;
+  --input-bg: #0f111a;
+  --input-border: #2a2c3a;
+
+  --summary-bg: #0f111a;
+  --summary-border: #2a2c3a;
+
+  --title-color: #79b8ff;
+
+  --btn-generate-bg: #a7e5f0;
+  --btn-generate-text: #000000;
+
+  --btn-regenerate-bg: #444;
+  --btn-regenerate-text: #ffffff;
+
+  --btn-clear-bg: #222;
+  --btn-clear-text: #ffffff;
+
+  --btn-copy-bg: #fbb6c2;
+  --btn-copy-text: #000000;
+
+  --btn-reset-bg: transparent;
+  --btn-reset-border: #ccc;
+  --btn-reset-text: #ccc;
+
+  /* === Shadows === */
+  --shadow-header: 0 2px 5px rgba(0, 0, 0, 0.3);
+  --shadow-panel: 0 2px 8px rgba(0, 0, 0, 0.3);
+
+  /* === Font Sizes === */
+  --font-size-title: 28px;
+  --font-size-panel-title: 16px;
+  --font-size-input: 15px;
+  --font-size-button: 14px;
+  --font-size-summary: 15px;
+  --font-size-placeholder-icon: 32px;
+  --font-size-placeholder-strong: 16px;
+  --font-size-placeholder-text: 13px;
+
+  /* === Spacing & Border Radius === */
+  --padding-header: 24px 40px;
+  --padding-panel: 20px;
+  --padding-input: 15px;
+  --padding-summary: 16px;
+  --padding-button: 10px 16px;
+
+  --radius-panel: 12px;
+  --radius-input: 10px;
+  --radius-button: 8px;
+
+  --gap-main: 30px;
+  --gap-header-icon: 12px;
+  --gap-button-group: 12px;
+  --gap-output-actions: 10px;
+  --gap-placeholder: 8px;
+
+  /* === Widths & Heights === */
+  --max-width-main: 1200px;
+  --min-height-box: 200px;
+  --max-height-box: 250px;
+
+  /* hover effect color */
+
+/* Base pastel colors */
+  --pastel-cyan: #a7e5f0;
+  --pastel-cyan-light: #c1eef5;
+
+  --pastel-red-pink: #fbb6c2;
+  --pastel-red-pink-light: #fdd3db;
+
+  --dark-gray: #444;
+  --dark-gray-light: #555;
+  --darker-gray: #333;
+  --darkest-gray: #2a2c3a;
+
+  --white: #ffffff;
+}
