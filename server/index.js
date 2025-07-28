@@ -4,7 +4,20 @@ const { spawn } = require("child_process");
 const path = require("path");
 
 const app = express();
-app.use(cors());
+const cors = require("cors");
+
+const allowedOrigins = [
+  "http://localhost:3000", // local dev
+  "https://summary-generator-5avd.vercel.app" // your Vercel frontend
+];
+
+app.use(
+  cors({
+    origin: allowedOrigins,
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 
 app.post("/summarize", (req, res) => {
