@@ -40,7 +40,7 @@ function App() {
     const isLocalhost = window.location.hostname === "localhost";
     const BACKEND_URL = isLocalhost
       ? "http://localhost:5000/summarize"
-      : "https://your-render-backend.onrender.com/summarize";
+      : "https://summary-generator-5avh.onrender.com/summarize";
 
     try {
       const response = await fetch(BACKEND_URL, {
