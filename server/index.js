@@ -4,7 +4,6 @@ const { spawn } = require("child_process");
 const path = require("path");
 
 const app = express();
-const cors = require("cors");
 
 const allowedOrigins = [
   "http://localhost:3000", // local dev
