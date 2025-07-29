@@ -27,6 +27,8 @@ app.use(
   })
 );
 
+// ✅ Allow preflight OPTIONS requests for /summarize
+app.options("/summarize", cors());
 
 app.use(express.json());
 
