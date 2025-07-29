@@ -5,24 +5,28 @@ const path = require("path");
 
 const app = express();
 
+// ✅ Add all needed origins
 const allowedOrigins = [
-  "http://localhost:3000", // Local development
-  "https://summary-generator-5avd.vercel.app" // Vercel deployed frontend
+  "http://localhost:3000",
+  "http://localhost:5173",
+  "https://summary-generator-5avd.vercel.app"
 ];
 
 app.use(
   cors({
     origin: function (origin, callback) {
-      // Allow requests with no origin (like Postman or curl)
+      console.log("Request from origin:", origin); // ✅ Debug log
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
+        console.error("CORS Blocked:", origin);
         callback(new Error("Not allowed by CORS"));
       }
     },
     credentials: true,
   })
 );
+
 
 app.use(express.json());
 
