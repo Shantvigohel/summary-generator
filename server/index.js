@@ -34,20 +34,23 @@ app.use(express.json());
 
 app.post("/summarize", (req, res) => {
   const inputText = req.body.text;
+  console.log("Received request with text:", inputText); // ✅
 
   const python = spawn("python", [path.join(__dirname, "inference.py")]);
 
   let output = "";
 
   python.stdout.on("data", (data) => {
+    console.log("PYTHON STDOUT:", data.toString()); // ✅
     output += data.toString();
   });
 
   python.stderr.on("data", (data) => {
-    console.error(`stderr: ${data}`);
+    console.error("PYTHON STDERR:", data.toString()); // ✅
   });
 
   python.on("close", (code) => {
+    console.log("Python script exited with code", code); // ✅
     if (code === 0) {
       res.json({ summary: output.trim() });
     } else {

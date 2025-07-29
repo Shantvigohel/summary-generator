@@ -3,7 +3,6 @@ import json
 from transformers import T5Tokenizer, T5ForConditionalGeneration
 import os
 
-
 # Load model and tokenizer
 script_dir = os.path.dirname(os.path.abspath(__file__))
 model_dir = os.path.join(script_dir, "saved_model")
@@ -18,13 +17,9 @@ input_text = data["text"]
 
 # Tokenize and summarize
 input_ids = tokenizer("summarize: " + input_text, return_tensors="pt", truncation=True).input_ids
-# Get the input length (in tokens)
 input_length = input_ids.shape[1]
+summary_length = max(20, int(input_length * 0.35))
 
-# Calculate summary length as 30–40% of input length
-summary_length = max(20, int(input_length * 0.35))  # minimum 20 tokens for quality
-
-# Generate summary
 summary_ids = model.generate(
     input_ids,
     max_length=summary_length,
@@ -34,5 +29,5 @@ summary_ids = model.generate(
 
 summary = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
 
-# Output result
-print(summary)
+# ✅ Flush output
+print(summary, flush=True)
